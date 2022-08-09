@@ -1,0 +1,9 @@
+Cypress.Commands.add('ScrollUI', function(){
+    cy.scrollTo('top')
+    cy.wait(1500)
+    cy.scrollTo('center')
+    cy.wait(1000)
+    cy.scrollTo('bottom')
+    cy.wait(1000)
+    cy.scrollTo('top')
+})

@@ -1,12 +1,14 @@
 describe('Login Scripts', () => {
     beforeEach(function(){
-        cy.visit('https://pilot.dentaldoor.com/')
-        // cy.get('[data-cy="I’m a Dental Professional"]')
-        // cy.get('[data-cy="I Own A Dental Office"]')
-        cy.url().should('eq', 'https://pilot.dentaldoor.com/')
+        cy.visit('HomePageAddress')
+        // cy.get('HomePageElement')
+        // cy.get('HomePageElement')
+        cy.url().should('eq', 'HomePageAddress')
         cy.viewport(1920, 1000)
     })
-
+    
+// Mobile Responsiveness
+    
     it('Mobile Responsiveness Portrait', () => {
         cy.viewport('macbook-15')
         cy.ScrollUI()
@@ -59,17 +61,19 @@ describe('Login Scripts', () => {
         cy.ScrollUI()
     })
 
+//     Sign-In Button    
     it('Sign-In Button', function(){
-        cy.get('.navbar-nav > :nth-child(3) > .nav-link').click()
-        cy.get('.login-title')
-        cy.get('.login-subtitle')
-        cy.url().should('contains', '/auth/realms/dentaldoor/')
+        cy.get('signInButtonElement').click()
+        cy.get('loginPageElement1')
+        cy.get('loginPageElement1')
+        cy.url().should('contains', 'uniqueWebAdressText')
     })
 
+//   HomePage Logo
     it('LandingPage Logo', () => {
-        cy.get('.navbar-brand > .logo').click()
-        cy.get('[data-cy="I own a Dental Office"]')
-        cy.get('[data-cy="I’m a Dental Professional"]')
-        cy.url().should('eq', 'https://pilot.dentaldoor.com/')
+        cy.get('logoElement').click()
+        cy.get('HomePageElement')
+        cy.get('HomePageElement')
+        cy.url().should('eq', 'HomePageAddress')
     })
 })

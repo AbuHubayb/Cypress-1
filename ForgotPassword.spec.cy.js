@@ -1,12 +1,13 @@
-describe('LoginUI', function(){
+describe('Forget Password Spec', function(){
     beforeEach(() =>{
-        cy.visit('https://pilot.dentaldoor.com/auth/realms/dentaldoor/protocol/openid-connect/auth?client_id=dentaldoor-frontend&redirect_uri=https%3A%2F%2Fpilot.dentaldoor.com%2Fdashboard&state=fb66b02d-27eb-482d-9e3a-3d3c98909f69&response_mode=fragment&response_type=code&scope=openid%20offline_access&nonce=1a120176-f4e1-4e04-829f-1d54be1394ee&prompt=login')      
-        cy.get('.login-pf-settings > :nth-child(2)').click()
-        cy.get('span > a').should('contain', 'Back to Login')
-        cy.get('.pf-c-form__label').should('contain', 'your Email')
+        cy.visit('webAddress')      
+        cy.get('loginElement').click()
+        cy.get('backToLoginButton').should('contain', 'Back to Login')
+        cy.get('emailInputTextBox').should('contain', 'your Email')
         // cy.viewport(1200, 200)
     })
-
+        // Mobile Resposiveness 
+    
     it('Mobile Responsiveness Portrait', () => {
         cy.viewport('macbook-15')
         cy.wait(1500)
@@ -62,29 +63,29 @@ describe('LoginUI', function(){
     })
 
     // Valid Email
-    // it('Valid Email',function() {
-    //     cy.get('#username').type('araji@byteworks.com.ng{enter}')
-    //     cy.get('.pf-c-alert__title').should('contain', 'visit the signup page')
-    // })
+    it('Valid Email',function() {
+        cy.get('emailTextBoxElement').type('validEmail{enter}')
+        cy.get('successMessageElement').should('contain', 'visit the signup page')
+    })
 
-    // Wrong Email
+    // Wrong Email For Error Message Test
     it('Wrong Email',function() {
-        cy.get('#username').type('playing@play.com{enter}')
-        cy.get('.pf-c-alert__title').should('contain', 'visit the signup page')
+        cy.get('emailTextBoxElement').type('invalidEmail{enter}')
+        cy.get('successMessageElement').should('contain', 'visit the signup page')
     })
 
     // Empty Email
     it('Empty Email',function() {
-        cy.get('.pf-c-button').click()
-        cy.get('#input-error-username').should('contain', 'Please specify email')
+        cy.get('emailTextBoxElement').click()
+        cy.get('errorMessageElement').should('contain', 'errorMessageElementText')
     })
     
     // Back to Login Button
     it('Back to Login Button', function(){
-        cy.get('span > a').click()
-        cy.get('#kc-login')
-        cy.get('span > .login-action-link')
-        cy.get('.kc-social-provider-name')
+        cy.get('backToLoginElement').click()
+        cy.get('loginButton')
+        cy.get('homePageElement1')
+        cy.get('homePageElement2')
     })
 
 
